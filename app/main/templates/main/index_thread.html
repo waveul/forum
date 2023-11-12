@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="thread">
+            <div class="list-child">
+                <h1>{{thread.Title}}</h1>
+                <p>{{thread.Content|safe|linebreaks}}</p>
+                <p style="margin-left: 380px"><a class="link-hot" href="{% url 'index_user' thread.UserID %}">{{thread.UserID}}</a>-{{thread.Time_Created}}</p>
+            </div>
+        </div>
+
+        <div class="comments">
+            <h1>Comments:</h1>
+            {% for item in thread.post_set.all %}
+                <p><a class="link-hot" href="{% url 'index_user' item.UserID %}">{{item.UserID}}</a>:</p>
+                <h3 style="margin-left: 30px">{{item.Content|linebreaks}}</h3>
+                <p style="margin-left: 500px">{{item.Time_Created}}</p>
+                <hr>
+            {% endfor %}
+
+            {% if user.username %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <p><label >Comment</label></p>
+                    {{form.Content}}
+                    <br>
+                    <input type="submit" value="Comment">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

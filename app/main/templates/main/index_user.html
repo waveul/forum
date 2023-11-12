@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="list-child" style="margin-top:20px">
+            <h1>List of Posts by {{User.username}}</h1>
+            {% for item in User.thread_set.all %}
+                <div class="user-post-item" style="background-color: #cccccc">
+                    <div class="user-post" style="height: 60px; overflow: auto">
+                        <p><a href="{% url 'index_thread' item.id %}">{{item.Title}}</a>:{{item.Content}}</p>
+                    </div>
+                    <p style="margin-left: 100px">{{item.Time_Created}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="thread-list">
+            <div class="list-child">
+                {% if user.username %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <p><label>Post a Thread</label></p>
+                        <div>
+                            Title
+                            <br>
+                            {{form.Title}}
+                        </div>
+                        <div>
+                            Content <br>
+                            {{form.Content}}
+                        </div>
+                        <br>
+                        <input type="submit" value="Post">
+                    </form>
+                {% endif %}
+
+                {% for item in Boards.thread_set.all %}
+                    <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                    <a href="{% url 'index_thread' item.id %}">{{item.Title}}</a><br>
+                    <p class="thread-description">posted by <a href="">{{item.UserID}}</a> - {{item.Time_Created}}</p>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

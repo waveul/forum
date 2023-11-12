@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="list-child" style="margin-top:20px">
+            <h1>List of Members</h1>
+            <table style="width: 100%">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Join Date</th>
+                </tr>
+                {% for item in User %}
+                    <tr>
+                        <td><a href="{% url 'index_user' item.username %}">{{item.username}}</a></td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.date_joined}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

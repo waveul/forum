@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="list-child" style="margin-top:20px">
+            <form action="" method="GET">
+                <input type="text" name="q" placeholder="Search">
+                <input type="submit" name="" id="" value="Search">
+            </form>
+            <h1>List of Posts</h1>
+            {% for item in Thread %}
+                <div class="post-list-item" style="background-color: #cccccc">
+                    <div class="post-list-user" style="height: 60px; overflow: auto">
+                        <p><a href="{% url 'index_thread' item.id %}">{{item.Title}}</a>:{{item.Content}}</p>
+                    </div>
+                    <p style="margin-left: 100px"><a href="{% url 'index_user' item.UserID %}">{{item.UserID}}</a>-{{item.Time_Created}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

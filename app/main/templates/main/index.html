@@ -1,0 +1,60 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Main{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="tableBoard">
+            <div class="list_child">
+                <table>
+                    <tr><h1>About Us</h1></tr>
+                    {% for board in Boards1 %}
+                        <tr>
+                            <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                            <a href="{% url 'index_board' board.id %}" style="margin-left: 5px" class="board-link">{{board.name}}</a>
+                            <p>{{board.description}}</p>
+                            <hr>
+                        </tr>
+                    {% endfor %}
+                    <tr><h1>Hardware</h1></tr>
+                    {% for board in Boards2 %}
+                        <tr>
+                            <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                            <a href="{% url 'index_board' board.id %}" style="margin-left: 5px" class="board-link">{{board.name}}</a>
+                            <p>{{board.description}}</p>
+                            <hr>
+                        </tr>
+                    {% endfor %}
+                    <tr><h1>Software</h1></tr>
+                    {% for board in Boards3 %}
+                        <tr>
+                            <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                            <a href="{% url 'index_board' board.id %}" style="margin-left: 5px" class="board-link">{{board.name}}</a>
+                            <p>{{board.description}}</p>
+                            <hr>
+                        </tr>
+                    {% endfor %}
+                    <tr><h1>Security</h1></tr>
+                    {% for board in Boards4 %}
+                        <tr>
+                            <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                            <a href="{% url 'index_board' board.id %}" style="margin-left: 5px" class "board-link">{{board.name}}</a>
+                            <p>{{board.description}}</p>
+                            <hr>
+                        </tr>
+                    {% endfor %}
+                    <tr><h1>Mobile Phones</h1></tr>
+                    {% for board in Boards5 %}
+                        <tr>
+                            <img class="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                            <a href="{% url 'index_board' board.id %}" style="margin-left: 5px" class="board-link">{{board.name}}</a>
+                            <p>{{board.description}}</p>
+                            <hr>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

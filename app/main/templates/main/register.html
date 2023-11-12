@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Thread{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="thread-list">
+            <div class="list-child">
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    <br>
+                    <h1>Registration</h1>
+                    {{form.as_p}}
+                    <input type="submit" value="Register">
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

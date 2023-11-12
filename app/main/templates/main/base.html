@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'main/CSS/1.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body style="background:#CACACA url({% static 'main/images/Background.png' %}) repeat-x top left">
+    <header>
+        <a href="/" id="logo"><img src="{% static 'main/images/Logo.png' %}" alt="Logo" width="100px" height="100px"></a>
+    </header>
+
+    <div id="global">
+        <div id="nav">
+            {% if user.username %}
+                <section>
+                    <img id="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                    <p id="p1">Tech Forum</p>
+                    <p id="greeting">Hello <a href="">{{user.username}}</a></p>
+                    <nav>
+                        <table id="nav-table" style="width: 100%">
+                            <tr align="center">
+                                <td class="nav-td"><a href="{% url 'index_posts' %}">All Posts</a></td>
+                                <td class="nav-td"><a href="{% url 'index_users' %}">Members List</a></td>
+                                <td class="nav-td"><a href="{% url 'logout' %}">Logout</a></td>
+                            </tr>
+                        </table>
+                    </nav>
+                </section>
+            {% else %}
+                <section>
+                    <img id="file-icon" src="{% static 'main/images/file.png' %}" alt="file-icon" height="20px" width="20px">
+                    <p id="p1">Tech Forum</p>
+                    <a href="{% url 'login' %}" id="greeting">Click here to log in</a>
+                    <nav>
+                        <table id="nav-table" style="width: 100%">
+                            <tr align="center">
+                                <td class="nav-td"><a href="{% url 'index_posts' %}">All Posts</a></td>
+                                <td class="nav-td"><a href="{% url 'index_users' %}">Members List</a></td>
+                                <td class="nav-td"><a href="{% url 'register' %}">Register</a></td>
+                                <td class="nav-td"><a href="{% url 'login' %}">Log in</a></td>
+                            </tr>
+                        </table>
+                    </nav>
+                </section>
+            {% endif %}
+        </div>
+
+        <div id="content">
+            {% block content %}
+
+            {% endblock %}
+
+            <div id="aside">
+                <div id="aside1">
+                    <h1>Recent News</h1>
+                    {% for thread in Threads %}
+                        <a href="{% url 'index_thread' thread.id %}" >{{thread.Title}}</a><br>
+                        <p class="author-description">Posted by <a href="{% url 'index_user' thread.UserID %}" class="link-hot">{{thread.UserID}}</a> - {{thread.Time_Created}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <br>
+        <center><a class="footer-link" href="/">Home</a> | <a class="footer-link" href=".">Back to Top</a> | <a class="footer-link" href="{% url 'terms_and_conditions' %}">Terms & Conditions</a> | <a class="footer-link" href="">Privacy Policy</a></center>
+        <br>
+
+    </div>
+
+</body>
+</html>
